@@ -4,7 +4,7 @@ metadata:
 projects:
   - name: frontend
     source:
-      location: 'https://github.com/gothinkster/vue-realworld-example-app.git'
+      location: 'https://github.com/gothinkster/react-redux-realworld-example-app'
       type: git
   - name: backend
     source:
@@ -47,5 +47,5 @@ commands:
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/frontend'
         type: exec
-        command: yarn install && yarn serve
+        command: npm install && npm start
         component: nodejs-frontend

@@ -10,7 +10,7 @@ projects:
     source:
       location: 'https://github.com/gothinkster/golang-gin-realworld-example-app.git'
       type: git
-    clonePath: src/github.com/gothinkster/golang-gin-realworld-example-app.git
+    clonePath: src/github.com/gothinkster/golang-gin-realworld-example-app
 attributes:
   persistVolumes: 'false'
 components:
@@ -50,13 +50,13 @@ components:
 commands:
   - name: setup backend
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/backend'
+      - workdir: '${CHE_PROJECTS_ROOT}/src/github.com/gothinkster/golang-gin-realworld-example-app'
         type: exec
         component: golang-backend
         command: go get -v -u github.com/kardianos/govendor && go get -v -u github.com/pilu/fresh && go get -v -u golang.org/x/crypto/...
   - name: run backend
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/backend'
+      - workdir: '${CHE_PROJECTS_ROOT}/src/github.com/gothinkster/golang-gin-realworld-example-app'
         type: exec
         command: govendor sync && govendor add +external && fresh
         component: golang-backend

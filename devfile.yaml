@@ -17,8 +17,8 @@ components:
     id: che-incubator/typescript/latest
     memoryLimit: 512Mi
   - type: chePlugin
-    id: ms-vscode/go/latest
-    memoryLimit: 512Mi
+    id: redhat/java/latest
+    memoryLimit: 1512Mi
   - alias: java-backend
     type: dockerimage
     image: 'openjdk:8-jdk-slim'
@@ -41,10 +41,10 @@ components:
 commands:
   - name: run backend
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/src/github.com/gothinkster/golang-gin-realworld-example-app'
+      - workdir: '${CHE_PROJECTS_ROOT}/backend'
         type: exec
         command: ./gradlew bootRun
-        component: golang-backend
+        component: java-backend
   - name: run frontend
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/frontend'

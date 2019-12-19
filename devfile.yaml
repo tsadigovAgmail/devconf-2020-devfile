@@ -53,7 +53,7 @@ commands:
       - workdir: '${CHE_PROJECTS_ROOT}/backend'
         type: exec
         component: golang-backend
-        command: go get -u github.com/kardianos/govendor && go get -u github.com/pilu/fresh && go get -u golang.org/x/crypto/...
+        command: go get -v -u github.com/kardianos/govendor && go get -v -u github.com/pilu/fresh && go get -v -u golang.org/x/crypto/...
   - name: run backend
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/backend'

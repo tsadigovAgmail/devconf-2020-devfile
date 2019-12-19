@@ -10,6 +10,7 @@ projects:
     source:
       location: 'https://github.com/gothinkster/golang-gin-realworld-example-app.git'
       type: git
+    clonePath: src/github.com/gothinkster/golang-gin-realworld-example-app.git
 attributes:
   persistVolumes: 'false'
 components:
@@ -24,6 +25,14 @@ components:
     image: 'quay.io/eclipse/che-golang-1.12:nightly'
     memoryLimit: 512Mi
     mountSources: true
+    env:
+      - name: GOPATH
+        # replicate the GOPATH from the plugin
+        value: /go:$(CHE_PROJECTS_ROOT)
+      - name: GOCACHE
+        # replicate the GOCACHE from the plugin, even though the cache is not shared
+        # between the two
+        value: /tmp/.cache
     endpoints:
       - name: web
         port: 8585

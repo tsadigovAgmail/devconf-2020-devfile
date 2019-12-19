@@ -30,14 +30,12 @@ components:
           public: 'true'
   - alias: nodejs-frontend
     type: dockerimage
-    image: 'quay.io/eclipse/che-nodejs10-community:nightly'
+    image: 'quay.io/eclipse/che-nodejs8-centos:nightly'
     memoryLimit: 1Gi
     mountSources: true
     endpoints:
       - name: web
         port: 4100
-        attributes:
-          public: 'true'
 commands:
   - name: run backend
     actions:

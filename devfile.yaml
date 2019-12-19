@@ -10,7 +10,6 @@ projects:
     source:
       location: 'https://github.com/xesina/golang-echo-realworld-example-app.git'
       type: git
-      branch: master
 components:
   - type: chePlugin
     id: che-incubator/typescript/latest

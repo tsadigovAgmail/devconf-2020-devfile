@@ -1,0 +1,54 @@
+apiVersion: 1.0.0
+metadata:
+  name: devconf-demo
+projects:
+  - name: frontend
+    source:
+      location: 'https://github.com/gothinkster/vue-realworld-example-app.git'
+      type: git
+  - name: backend
+    source:
+      location: 'https://github.com/xesina/golang-echo-realworld-example-app.git'
+      type: git
+      branch: master
+components:
+  - type: chePlugin
+    id: che-incubator/typescript/latest
+    memoryLimit: 512Mi
+  - type: chePlugin
+    id: ms-vscode/go/latest
+    memoryLimit: 512Mi
+  - alias: golang-backend
+    type: dockerimage
+    image: 'quay.io/eclipse/che-golang-1.12:nightly'
+    memoryLimit: 512Mi
+    mountSources: true
+    endpoints:
+      - name: web
+        port: 8585
+        attributes:
+          discoverable: 'true'
+          public: 'true'
+  - alias: nodejs-frontend
+    type: dockerimage
+    image: 'quay.io/eclipse/che-nodejs10-community:nightly'
+    memoryLimit: 512Mi
+    mountSources: true
+    endpoints:
+      - name: web
+        port: 4100
+        attributes:
+          public: 'true'
+commands:
+  - name: run backend
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/backend'
+        type: exec
+        command: go mod download && go run main.go
+        component: golang-backend
+  - name: run frontend
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/frontend'
+        type: exec
+        command: yarn install && yarn serve
+        component: nodejs-frontend

@@ -8,9 +8,8 @@ projects:
       type: git
   - name: backend
     source:
-      location: 'https://github.com/gothinkster/golang-gin-realworld-example-app.git'
+      location: 'https://github.com/gothinkster/spring-boot-realworld-example-app.git'
       type: git
-    clonePath: src/github.com/gothinkster/golang-gin-realworld-example-app
 attributes:
   persistVolumes: 'false'
 components:
@@ -20,22 +19,14 @@ components:
   - type: chePlugin
     id: ms-vscode/go/latest
     memoryLimit: 512Mi
-  - alias: golang-backend
+  - alias: java-backend
     type: dockerimage
-    image: 'quay.io/eclipse/che-golang-1.12:nightly'
-    memoryLimit: 512Mi
+    image: 'openjdk:8-jdk-slim'
+    memoryLimit: 1Gi
     mountSources: true
-    env:
-      - name: GOPATH
-        # replicate the GOPATH from the plugin
-        value: /go:$(CHE_PROJECTS_ROOT)
-      - name: GOCACHE
-        # replicate the GOCACHE from the plugin, even though the cache is not shared
-        # between the two
-        value: /tmp/.cache
     endpoints:
       - name: web
-        port: 8585
+        port: 8080
         attributes:
           discoverable: 'true'
           public: 'true'
@@ -48,17 +39,11 @@ components:
       - name: web
         port: 4100
 commands:
-  - name: setup backend
-    actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/src/github.com/gothinkster/golang-gin-realworld-example-app'
-        type: exec
-        component: golang-backend
-        command: go get -v -u github.com/kardianos/govendor && go get -v -u github.com/pilu/fresh && go get -v -u golang.org/x/crypto/...
   - name: run backend
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/src/github.com/gothinkster/golang-gin-realworld-example-app'
         type: exec
-        command: govendor sync && govendor add +external && fresh
+        command: ./gradlew bootRun
         component: golang-backend
   - name: run frontend
     actions:

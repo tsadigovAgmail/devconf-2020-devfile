@@ -8,7 +8,7 @@ projects:
       type: git
   - name: backend
     source:
-      location: 'https://github.com/xesina/golang-echo-realworld-example-app.git'
+      location: 'https://github.com/gothinkster/golang-gin-realworld-example-app.git'
       type: git
 attributes:
   persistVolumes: 'false'
@@ -39,11 +39,17 @@ components:
       - name: web
         port: 4100
 commands:
+  - name: setup backend
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/backend'
+        type: exec
+        component: golang-backend
+        command: go get -u github.com/kardianos/govendor && go get -u github.com/pilu/fresh && go get -u golang.org/x/crypto/...
   - name: run backend
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/backend'
         type: exec
-        command: go mod download && go run main.go
+        command: govendor sync && govendor add +external && fresh
         component: golang-backend
   - name: run frontend
     actions:

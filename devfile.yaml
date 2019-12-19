@@ -32,7 +32,7 @@ components:
   - alias: nodejs-frontend
     type: dockerimage
     image: 'quay.io/eclipse/che-nodejs10-community:nightly'
-    memoryLimit: 512Mi
+    memoryLimit: 1Gi
     mountSources: true
     endpoints:
       - name: web

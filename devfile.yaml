@@ -38,7 +38,6 @@ components:
     endpoints:
       - name: web
         port: 4100
-        -
   - type: dockerimage
     alias: mysql
     image: docker.io/centos/mysql-57-centos7

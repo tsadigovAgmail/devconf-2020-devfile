@@ -38,6 +38,24 @@ components:
     endpoints:
       - name: web
         port: 4100
+        -
+  - type: dockerimage
+    alias: mysql
+    image: docker.io/centos/mysql-57-centos7
+    env:
+      - name: MYSQL_USER
+        value: demo
+      - name: MYSQL_PASSWORD
+        value: demo
+      - name: MYSQL_DATABASE
+        value: demo
+    memoryLimit: 300Mi
+    endpoints:
+      - name: 'db'
+        port: 3306
+        attributes:
+          discoverable: "true"
+          public: "false"
 commands:
   - name: run backend
     actions:

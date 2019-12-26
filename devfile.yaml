@@ -48,7 +48,7 @@ components:
         value: demo
       - name: MYSQL_DATABASE
         value: demo
-    memoryLimit: 300Mi
+    memoryLimit: 1Gi
     endpoints:
       - name: 'db'
         port: 3306

@@ -21,7 +21,7 @@ components:
     memoryLimit: 1512Mi
   - alias: java-backend
     type: dockerimage
-    image: 'openjdk:8-jdk-slim'
+    image: 'quay.io/eclipse/che-java8-maven:nightly'
     memoryLimit: 1Gi
     mountSources: true
     endpoints:

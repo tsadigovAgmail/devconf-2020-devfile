@@ -31,13 +31,25 @@ components:
           discoverable: 'true'
           public: 'true'
   - alias: nodejs-frontend
-    type: dockerimage
-    image: 'quay.io/eclipse/che-nodejs8-centos:nightly'
-    memoryLimit: 1Gi
+    type: kubernetes
     mountSources: true
-    endpoints:
-      - name: web
-        port: 4100
+    referenceContent: |
+          kind: List
+          items:
+          - kind: Pod
+            apiVersion: v1
+            metadata:
+              name: js-runner
+            spec:
+              containers:
+                name: nodejs
+                image: quay.io/eclipse/che-nodejs8-centos:nightly
+                resources:
+                  limits:
+                    memory: 1Gi
+                ports:
+                - containerPort: 4100
+                  protocol: TCP
   - type: dockerimage
     alias: mysql
     image: docker.io/centos/mysql-57-centos7

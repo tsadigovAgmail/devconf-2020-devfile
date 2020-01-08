@@ -13,6 +13,8 @@ projects:
 attributes:
   persistVolumes: 'true'
 components:
+  - type: cheEditor
+    id: eclipse/che-theia/next
   - type: chePlugin
     id: che-incubator/typescript/latest
     memoryLimit: 512Mi

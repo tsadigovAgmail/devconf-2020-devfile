@@ -1,6 +1,6 @@
 apiVersion: 1.0.0
 metadata:
-  name: devconf-demo
+  generateName: devconf-demo-
 projects:
   - name: frontend
     source:
@@ -25,7 +25,7 @@ components:
     memoryLimit: 1Gi
     mountSources: true
     endpoints:
-      - name: web
+      - name: web-backend
         port: 8080
         attributes:
           discoverable: 'true'
@@ -34,22 +34,31 @@ components:
     type: kubernetes
     mountSources: true
     referenceContent: |
-          kind: List
-          items:
-          - kind: Pod
-            apiVersion: v1
-            metadata:
-              name: js-runner
-            spec:
-              containers:
-                name: nodejs
-                image: quay.io/eclipse/che-nodejs8-centos:nightly
-                resources:
-                  limits:
-                    memory: 1Gi
-                ports:
-                - containerPort: 4100
-                  protocol: TCP
+      kind: List
+      items:
+      - kind: Pod
+        apiVersion: v1
+        metadata:
+          name: js-runner
+        spec:
+          containers:
+            - name: nodejs
+              image: quay.io/eclipse/che-nodejs8-centos:nightly
+              resources:
+                limits:
+                  memory: 1Gi
+              ports:
+              - containerPort: 4100
+                protocol: TCP
+      - kind: Service
+        apiVersion: v1
+        metadata:
+          name: web-frontend
+        spec:
+          ports:
+            - name: web-frontend
+              port: 4100
+              targetPort: 4100
   - type: dockerimage
     alias: mysql
     image: docker.io/centos/mysql-57-centos7

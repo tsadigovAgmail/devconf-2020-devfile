@@ -11,7 +11,7 @@ projects:
       location: 'https://github.com/gothinkster/spring-boot-realworld-example-app.git'
       type: git
 attributes:
-  persistVolumes: 'true'
+  persistVolumes: 'false'
 components:
   - type: cheEditor
     id: eclipse/che-theia/next

@@ -3,6 +3,8 @@ how to devfile: https://docs.google.com/document/d/1CEgtZVd5Y1P4IKutpxiHkrgUS325
 projects in devfile: https://github.com/eclipse/che-docs/blob/master/src/main/pages/che-7/end-user-guide/proc_writing-a-devfile-for-your-project.adoc#specifying-multiple-projects-in-a-devfile
 
 ##db
+`runtime('mysql:mysql-connector-java')`
+
 ```
 database=mysql
 spring.datasource.url=jdbc:mysql://db:3306/demo

@@ -74,8 +74,8 @@ commands:
         command: ./gradlew bootRun
         component: java-backend
   - name: run frontend
-    previewUrl:
-      port: 4100
+    #previewUrl:
+    #  port: 4100
     actions:
       - workdir: '${CHE_PROJECTS_ROOT}/frontend'
         type: exec

@@ -1,6 +1,7 @@
 apiVersion: 1.0.0
 metadata:
   generateName: devconf-demo-
+
 projects:
   - name: frontend
     source:
@@ -10,8 +11,10 @@ projects:
     source:
       location: 'https://github.com/gothinkster/spring-boot-realworld-example-app.git'
       type: git
+
 attributes:
   persistVolumes: 'false'
+
 components:
   - type: cheEditor
     id: eclipse/che-theia/next
@@ -20,7 +23,7 @@ components:
     memoryLimit: 512Mi
   - type: chePlugin
     id: redhat/java/latest
-    memoryLimit: 1512Mi
+    memoryLimit: 1Gi
   - alias: java-backend
     type: dockerimage
     image: 'quay.io/eclipse/che-java8-maven:nightly'
@@ -66,6 +69,7 @@ components:
         attributes:
           discoverable: "true"
           public: "false"
+
 commands:
   - name: run backend
     actions:

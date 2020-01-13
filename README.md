@@ -6,7 +6,7 @@ projects in devfile: https://github.com/eclipse/che-docs/blob/master/src/main/pa
 ## Architecture
 
 ```
-  ------------------------------------------------------ ==vv== k8s ==vv==
+  ---------||----------------------||------------------- ==vv== k8s ==vv==
            ||                      ||
            ||                      ||
            ||                      ||

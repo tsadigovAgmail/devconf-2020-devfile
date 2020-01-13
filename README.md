@@ -6,6 +6,14 @@ projects in devfile: https://github.com/eclipse/che-docs/blob/master/src/main/pa
 ## Architecture
 
 ```
+      + - - - - - +
+      |  BROWSER  |
+      + - - - - - +
+            |
+            |
+            | - - - - - - - - - - >|
+            |                      |
+            |                      |
   ---------||----------------------||------------------- ==vv== k8s ==vv==
            ||                      ||
            ||                      ||

@@ -5,19 +5,8 @@ projects in devfile: https://github.com/eclipse/che-docs/blob/master/src/main/pa
 
 ## Architecture
 
-                  +-----------+
-                  |           |
-                  |  BROWSER  |
-                  |           |
-                  +-----------+
-                       /\
-                     /    \
-                   /        \
-                 /            \
-               /                \
-             /                    \               ==^^==   public  ==^^==
   -----------------------------------------------------------------------
-           /\                      /\             ==vv== k8s infra ==vv==
+           ||                      ||                 ==vv== k8s ==vv==
            ||                      ||
            ||                      ||
            ||                      ||

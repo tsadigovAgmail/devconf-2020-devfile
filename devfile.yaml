@@ -67,8 +67,8 @@ components:
       - name: 'db'
         port: 3306
         attributes:
-          discoverable: "true"
-          public: "false"
+          discoverable: 'true'
+          public: 'false'
 
 commands:
   - name: run backend

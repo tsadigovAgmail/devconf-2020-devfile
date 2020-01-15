@@ -40,19 +40,17 @@ components:
     type: kubernetes
     mountSources: true
     referenceContent: |
-      kind: List
-      items:
-      - kind: Pod
-        apiVersion: v1
-        metadata:
-          name: js-runner
-        spec:
-          containers:
-            - name: nodejs
-              image: quay.io/eclipse/che-nodejs8-centos:nightly
-              resources:
-                limits:
-                  memory: 512Mi
+      kind: Pod
+      apiVersion: v1
+      metadata:
+        name: js-runner
+      spec:
+        containers:
+          - name: nodejs
+            image: quay.io/eclipse/che-nodejs8-centos:nightly
+            resources:
+              limits:
+                memory: 512Mi
   - type: dockerimage
     alias: mysql
     image: docker.io/centos/mysql-57-centos7

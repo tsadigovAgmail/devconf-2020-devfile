@@ -24,20 +24,6 @@
     +--------------+       +-----------------+             +-----------+
 ```
 
-### db
-```
-# build.gradle
-runtime('mysql:mysql-connector-java')
-```
-
-```
-# application.properties
-database=mysql
-spring.datasource.url=jdbc:mysql://db:3306/demo
-spring.datasource.username=demo
-spring.datasource.password=demo
-```
-
 ## resources
  - https://www.eclipse.org/che/docs/che-7/making-a-workspace-portable-using-a-devfile/
  - https://github.com/redhat-developer/devfile

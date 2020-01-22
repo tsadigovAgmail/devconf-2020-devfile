@@ -25,7 +25,14 @@
 ```
 
 ## resources
- - https://www.eclipse.org/che/docs/che-7/making-a-workspace-portable-using-a-devfile/
- - https://github.com/redhat-developer/devfile
-   - https://redhat-developer.github.io/devfile/
-   - https://redhat-developer.github.io/devfile/devfile
+  - https://www.eclipse.org/che/docs/che-7/making-a-workspace-portable-using-a-devfile/
+  - https://github.com/redhat-developer/devfile
+    - https://redhat-developer.github.io/devfile/
+    - https://redhat-developer.github.io/devfile/devfile
+
+
+## che.openshift.io
+  - che - https://che.openshift.io
+  - OS console - https://console.starter-us-east-2.openshift.com
+  - factory without db - https://che.openshift.io/f?url=https://raw.githubusercontent.com/sparkoo/devconf-2020-devfile/master/steps/07-commands.yaml
+  - factory with db - https://che.openshift.io/f?url=https://raw.githubusercontent.com/sparkoo/devconf-2020-devfile/master/devfile.yaml

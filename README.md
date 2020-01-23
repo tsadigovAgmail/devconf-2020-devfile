@@ -36,3 +36,17 @@
   - OS console - https://console.starter-us-east-2.openshift.com
   - factory without db - https://che.openshift.io/f?url=https://raw.githubusercontent.com/sparkoo/devconf-2020-devfile/master/steps/07-commands.yaml
   - factory with db - https://che.openshift.io/f?url=https://raw.githubusercontent.com/sparkoo/devconf-2020-devfile/master/devfile.yaml
+
+
+### db
+**build.gradle**
+```
+runtime('mysql:mysql-connector-java')
+```
+**application.properties**
+```
+database=mysql
+spring.datasource.url=jdbc:mysql://db:3306/demo
+spring.datasource.username=demo
+spring.datasource.password=demo
+```

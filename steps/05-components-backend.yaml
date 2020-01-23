@@ -21,7 +21,7 @@ components:
     id: eclipse/che-theia/next
   - type: chePlugin
     id: che-incubator/typescript/latest
-    memoryLimit: 512Mi
+    memoryLimit: 1Gi
   # - type: chePlugin
   #   id: redhat/java/latest
   #   memoryLimit: 1Gi

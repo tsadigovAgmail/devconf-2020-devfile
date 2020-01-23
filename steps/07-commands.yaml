@@ -22,9 +22,9 @@ components:
   - type: chePlugin
     id: che-incubator/typescript/latest
     memoryLimit: 512Mi
-  - type: chePlugin
-    id: redhat/java/latest
-    memoryLimit: 1Gi
+  # - type: chePlugin
+  #   id: redhat/java/latest
+  #   memoryLimit: 1Gi
   - alias: java-backend
     type: dockerimage
     image: 'quay.io/eclipse/che-java8-maven:nightly'
@@ -34,7 +34,6 @@ components:
       - name: web-backend
         port: 8080
         attributes:
-          discoverable: 'true'
           public: 'true'
   - alias: nodejs-frontend
     type: kubernetes

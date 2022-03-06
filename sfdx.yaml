@@ -4,7 +4,7 @@ metadata:
   name: sfdx-tural
 
 projects:
-  - name: frontend
+  - name: src
     source:
       location: 'https://github.com/tsadigovAgmail/HelloSfdx'
       type: git
@@ -46,17 +46,9 @@ components:
               limits:
                 memory: 1024Mi
 commands:
-  - name: run backend
+  - name: source push
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/backend'
+      - workdir: '${CHE_PROJECTS_ROOT}/src'
         type: exec
-        command: ./gradlew bootRun
-        component: java-backend
-  - name: run frontend
-    #previewUrl:
-    #  port: 4100
-    actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/frontend'
-        type: exec
-        command: npm install && npm start
-        component: nodejs-frontend
+        command: sfdx force:source:push
+        component: sfdx

@@ -1,7 +1,7 @@
 apiVersion: 1.0.0
 metadata:
   ## generateName devconf2020-demo-
-  name: devconf2020-demo
+  name: devconf2020-demo-tural
 
 projects:
   - name: frontend
@@ -27,7 +27,7 @@ components:
   #   memoryLimit: 1Gi
   - alias: java-backend
     type: dockerimage
-    image: 'quay.io/eclipse/che-java8-maven:nightly'
+    image: 'quay.io/eclipse/che-java8-maven:next'
     memoryLimit: 1Gi
     mountSources: true
     endpoints:

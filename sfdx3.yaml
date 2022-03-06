@@ -1,0 +1,81 @@
+apiVersion: 1.0.0
+metadata:
+  ## generateName devconf2020-demo-
+  name: sfdx-tural
+
+projects:
+  - name: src
+    source:
+      location: 'https://github.com/tsadigovAgmail/HelloSfdx'
+      type: git
+attributes:
+  persistVolumes: 'false'
+
+components:
+  - attributes:
+      app.kubernetes.io/name: python
+      che-theia.eclipse.org/vscode-extensions:
+        - 'https://github.com/microsoft/vscode-python/releases/download/2020.7.94776/ms-python-release.vsix'
+        - 'https://marketplace.visualstudio.com/_apis/public/gallery/publishers/salesforce/vsextensions/salesforcedx-vscode/54.3.0/vspackage'
+    container:
+      args:
+        - sh
+        - '-c'
+        - '${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}'
+      env:
+        - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+          value: /remote-endpoint/plugin-remote-endpoint
+        - name: THEIA_PLUGINS
+          value: 'local-dir:///plugins/sidecars/python'
+      image: 'quay.io/devfile/universal-developer-image:ubi8-3735d4f'
+      memoryLimit: 512Mi
+      mountSources: true
+      sourceMapping: /projects
+      volumeMounts:
+        - name: venv
+          path: /home/user/.venv
+        - name: remote-endpoint
+          path: /remote-endpoint
+        - name: plugins
+          path: /plugins
+    name: sfdxython
+  - type: cheEditor
+    id: eclipse/che-theia/latest
+  - type: chePlugin
+    id: che-incubator/typescript/latest
+    memoryLimit: 1Gi
+  # - type: chePlugin
+  #   id: redhat/java/latest
+  #   memoryLimit: 1Gi
+  - alias: sfdx
+    type: dockerimage
+    image: 'tsadigov/stacks'
+    memoryLimit: 1Gi
+    mountSources: true
+    endpoints:
+      - name: web-backend
+        port: 8080
+        attributes:
+          public: 'true'
+  - alias: nodejs-frontend
+    type: kubernetes
+    mountSources: true
+    referenceContent: |
+      kind: Pod
+      apiVersion: v1
+      metadata:
+        name: js-runner
+      spec:
+        containers:
+          - name: nodejs
+            image: quay.io/eclipse/che-nodejs8-centos:nightly
+            resources:
+              limits:
+                memory: 1024Mi
+commands:
+  - name: source push
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/src'
+        type: exec
+        command: sfdx force:source:push
+        component: sfdx
